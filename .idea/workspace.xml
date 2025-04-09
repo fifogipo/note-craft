@@ -4,15 +4,24 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="106ba57b-d8cf-4075-8ef8-72acb0355fd9" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/_lib/hooks/useDebounce.tsx" afterDir="false" />
+    <list default="true" id="106ba57b-d8cf-4075-8ef8-72acb0355fd9" name="Changes" comment="modifica db">
+      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/prisma/dev.db" beforeDir="false" afterPath="$PROJECT_DIR$/prisma/dev.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/_lib/components/FileList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/_lib/components/FileList.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/_lib/components/RichNote.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/_lib/components/RichNote.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/_lib/components/Sidebar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/_lib/components/Sidebar.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/_lib/components/SignIn.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/_lib/components/SignIn.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/_lib/type/index.type.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/_lib/type/index.type.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/_lib/utils/prisma.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/_lib/utils/prisma.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/api/folders/route.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/api/folders/route.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/api/notes/[id]/route.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/api/notes/[id]/route.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/api/notes/route.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/api/notes/route.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/globals.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/globals.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/providers.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/providers.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,6 +38,9 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="ProjectErrors" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 8
 }</component>
@@ -42,7 +54,7 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/fifogipo/Documents/Varie/note-craft/src/app/api/folders&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/fifogipo/Documents/Varie/note-craft/public&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -61,15 +73,16 @@
 }</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/app/api/folders" />
       <recent name="$PROJECT_DIR$/public" />
+      <recent name="$PROJECT_DIR$/src/app/api/folders/[id]" />
+      <recent name="$PROJECT_DIR$/src/app/api/folders" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/_lib/components/signin" />
+      <recent name="$PROJECT_DIR$/src/_lib/components/sidebar" />
       <recent name="$PROJECT_DIR$/src/app/api/notes/[id]" />
       <recent name="$PROJECT_DIR$/src/app/api/notes" />
       <recent name="$PROJECT_DIR$/src/_lib/components/side-bar" />
-      <recent name="$PROJECT_DIR$/src/_lib/components" />
-      <recent name="$PROJECT_DIR$/src/_lib/utils" />
     </key>
   </component>
   <component name="RunManager" selected="npm.dev">
@@ -122,7 +135,13 @@
       <workItem from="1744126019565" duration="549000" />
       <workItem from="1744126580647" duration="15240000" />
       <workItem from="1744192663322" duration="4588000" />
-      <workItem from="1744197269260" duration="1343000" />
+      <workItem from="1744197269260" duration="1824000" />
+      <workItem from="1744204401014" duration="2940000" />
+      <workItem from="1744223304862" duration="715000" />
+      <workItem from="1744224127822" duration="5552000" />
+      <workItem from="1744231118020" duration="59000" />
+      <workItem from="1744231186060" duration="7464000" />
+      <workItem from="1744238669269" duration="665000" />
     </task>
     <task id="LOCAL-00001" summary="init project and installed component">
       <option name="closed" value="true" />
@@ -140,7 +159,23 @@
       <option name="project" value="LOCAL" />
       <updated>1744190013612</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="salvataggio modifiche nota">
+      <option name="closed" value="true" />
+      <created>1744201809250</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1744201809250</updated>
+    </task>
+    <task id="LOCAL-00004" summary="modifica db">
+      <option name="closed" value="true" />
+      <created>1744202029349</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1744202029349</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -149,6 +184,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="init project and installed component" />
     <MESSAGE value="create prime relazioni e interazioni con file e cartelle" />
-    <option name="LAST_COMMIT_MESSAGE" value="create prime relazioni e interazioni con file e cartelle" />
+    <MESSAGE value="salvataggio modifiche nota" />
+    <MESSAGE value="modifica db" />
+    <option name="LAST_COMMIT_MESSAGE" value="modifica db" />
   </component>
 </project>

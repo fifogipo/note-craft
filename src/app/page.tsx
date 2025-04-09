@@ -1,117 +1,191 @@
 "use client";
 
-import { useState, useEffect, useCallback, useRef } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useSession } from "next-auth/react";
 import SignIn from "@/_lib/components/SignIn";
 import Sidebar from "@/_lib/components/Sidebar";
 import { RichNote } from "@/_lib/components/RichNote";
 import FileList from "@/_lib/components/FileList";
 import { useDebounced } from "@/_lib/hooks/useDebounce";
+import { useFolder } from "@/_lib/hooks/useFolder";
+import { useNote } from "@/_lib/hooks/useNote";
 
 const Home = () => {
   const { data: session } = useSession();
-  const [notes, setNotes] = useState<Note[]>([]);
-  const [folders, setFolders] = useState<Folder[]>([]);
+  const email = session?.user?.email;
+
+  const [activeFolderId, setActiveFolderId] = useState<number | undefined>(undefined);
   const [activeNote, setActiveNote] = useState<Note | undefined>(undefined);
-  const activeNoteRef = useRef<Note | undefined>(activeNote);
 
-  const fetchData = async () => {
-    try {
-      const foldersRes = await fetch(`/api/folders?email=${session?.user?.email}`);
-      const foldersData: Folder[] = await foldersRes.json();
-      setFolders(foldersData);
+  const { folders, loading: foldersLoading, error: foldersError, refreshFolders } = useFolder(email);
+  const { notes, loading: notesLoading, error: notesError, setNotes } = useNote(email, activeFolderId);
 
-      if (foldersData.length > 0) {
-        const firstFolderId = foldersData[0].id;
-        await getNotesByFolder(firstFolderId);
+  const getNoteDetail = useCallback(
+    async (noteId: number | null) => {
+      if (noteId === null) {
+        setActiveNote(undefined);
+        return;
       }
-    } catch (error) {
-      console.error("Errore nel fetching dei dati", error);
-    }
+      try {
+        const res = await fetch(`/api/notes/${noteId}?email=${email}`);
+        const noteData: Note = await res.json();
+        setActiveNote(noteData);
+      } catch (error) {
+        console.error("Errore nel fetching della nota", error);
+      }
+    },
+    [email],
+  );
+
+  const handleNewNote = async () => {
+    if (!email) return;
+    await upsertNote({ title: "New Note", content: "" });
   };
 
-  const getNotesByFolder = useCallback(async (folderId: number) => {
-    try {
-      const notesRes = await fetch(`/api/notes?email=${session?.user?.email}&folderId=${folderId}`);
-      const notesData: Note[] = await notesRes.json();
-      setNotes(notesData);
-    } catch (error) {
-      console.error("Errore nel fetching delle note della cartella", error);
-    }
-  }, [session?.user?.email]);
+  const handleSaveNote = async (noteData: Partial<Note>) => {
+    if (!email) return;
+    await upsertNote(noteData, activeNote);
+  };
 
-  const getNoteDetail = useCallback(async (fileId: number) => {
-    try {
-      const noteRes = await fetch(`/api/notes/${fileId}?email=${session?.user?.email}`);
-      const noteData: Note = await noteRes.json();
-      setActiveNote(noteData);
-    } catch (error) {
-      console.error("Errore nel fetching della note", error);
-    }
-  }, [session?.user?.email]);
+  const debouncedSaveNote = useDebounced(handleSaveNote, 1500);
 
-  const changeFolderHandler = (folderId: number) => getNotesByFolder(folderId).then();
-  const changeFileHandler = (fileId: number) => getNoteDetail(fileId).then();
-
-  const handleAddNote = async (newNote: Partial<Note>) => {
-    if (!session || !activeNoteRef.current) return;
+  const upsertNote = async (newNote: Partial<Note>, currentNote?: Note) => {
     try {
-      const tempNote: Note = {
-        ...activeNoteRef.current,
-        content: newNote.content ? newNote.content : activeNoteRef.current.content,
-        title: newNote.title ? newNote.title : activeNoteRef.current.title,
-      };
-      const response = await fetch(`/api/notes/${tempNote.id}`, {
-        method: "PATCH",
+      const noteToSend: Note = currentNote ? { ...currentNote, ...newNote } : { ...(newNote as Note), id: Date.now() };
+
+      const method = currentNote ? "PATCH" : "POST";
+      const endpoint = currentNote ? `/api/notes/${noteToSend.id}` : `/api/notes?email=${email}`;
+      const body = currentNote ? noteToSend : { ...noteToSend, folderId: activeFolderId };
+
+      const response = await fetch(endpoint, {
+        method,
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(tempNote),
+        body: JSON.stringify(body),
       });
 
       if (!response.ok) {
-        throw new Error("Errore durante l'inserimento della nota");
+        throw new Error("Errore durante l'invio della nota");
       }
-      const insertedNote: Note = await response.json();
 
-      setActiveNote(insertedNote);
-      setNotes((prevNotes) =>
-        prevNotes.map((note) =>
-          note.id === insertedNote.id ? insertedNote : note
-        )
-      );
-
+      const savedNote: Note = await response.json();
+      setActiveNote(savedNote);
+      setNotes((prevNotes) => {
+        const noteExists = prevNotes.some((n) => n.id === savedNote.id);
+        return noteExists ? prevNotes.map((n) => (n.id === savedNote.id ? savedNote : n)) : [...prevNotes, savedNote];
+      });
     } catch (error) {
-      console.error("Errore nella aggiunta della nota", error);
+      console.error("Errore durante l'upsert della nota", error);
     }
   };
-  const debouncedHandleAddNote = useDebounced(handleAddNote, 1500);
+
+  const handleNewFolder = async () => {
+    if (!email) return;
+    try {
+      const response = await fetch(`/api/folders?email=${email}`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name: "New Folder" }),
+      });
+      if (!response.ok) {
+        throw new Error("Errore durante la creazione della cartella");
+      }
+
+      refreshFolders();
+    } catch (error) {
+      console.error("Errore nella creazione della cartella", error);
+    }
+  };
+
+  const handleRenameFolder = async (folderId: number, newName: string) => {
+    try {
+      const response = await fetch(`/api/folders/${folderId}`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name: newName }),
+      });
+      if (!response.ok) {
+        throw new Error("Errore durante l'aggiornamento della cartella");
+      }
+
+      refreshFolders();
+    } catch (error) {
+      console.error("Errore nella rinominazione della cartella", error);
+    }
+  };
+
+  const handleDeleteFolder = async (folderId: number) => {
+    try {
+      const response = await fetch(`/api/folders/${folderId}`, {
+        method: "DELETE",
+      });
+      if (!response.ok) {
+        throw new Error("Errore durante l'eliminazione della cartella");
+      }
+      if (folderId === activeFolderId) {
+        setActiveFolderId(undefined);
+        setActiveNote(undefined);
+      }
+      refreshFolders();
+    } catch (error) {
+      console.error("Errore nell'eliminazione della cartella", error);
+    }
+  };
+
+  const handleDeleteNote = async (noteId: number) => {
+    try {
+      debugger
+      const response = await fetch(`/api/notes/${noteId}`, {
+        method: "DELETE",
+      });
+      if (!response.ok) {
+        throw new Error("Errore durante l'eliminazione della nota");
+      }
+      setNotes((prevNotes) => prevNotes.filter((n) => n.id !== noteId));
+      if (activeNote && activeNote.id === noteId) {
+        setActiveNote(undefined);
+      }
+    } catch (error) {
+      console.error("Errore nell'eliminazione della nota", error);
+    }
+  };
+
+  const handleSelectNote = (fileId: number | null) => {
+    getNoteDetail(fileId).then();
+  };
 
   useEffect(() => {
-    if (session?.user?.email) fetchData().then();
-  }, [session]);
-
-  useEffect(() => {
-    activeNoteRef.current = activeNote;
-  }, [activeNote]);
+    if (folders && folders.length > 0 && !activeFolderId) {
+      setActiveFolderId(folders[0].id);
+    }
+  }, [folders, activeFolderId]);
 
   return (
     <div>
       {!session ? (
         <SignIn />
       ) : (
-        <div className="flex justify-center items-center h-screen p-4">
+        <main className="flex">
           <Sidebar
             session={session}
             folder={folders}
-            changeFolder={changeFolderHandler}
+            changeFolder={(folderId) => setActiveFolderId(folderId)}
+            onAddFolder={handleNewFolder}
+            onRenameFolder={handleRenameFolder}
+            onDeleteFolder={handleDeleteFolder}
           />
-          <FileList files={notes} changeFiles={changeFileHandler} />
+          <FileList
+            files={notes}
+            changeFiles={handleSelectNote}
+            onAddNote={handleNewNote}
+            onDeleteNote={handleDeleteNote}
+          />
           <RichNote
             disableLeftBorder
-            onNoteSaved={(e) => debouncedHandleAddNote(e.detail)}
+            onNoteSaved={(e) => debouncedSaveNote(e.detail)}
             title={activeNote ? activeNote.title : ""}
             content={activeNote ? activeNote.content : ""}
           />
-        </div>
+        </main>
       )}
     </div>
   );

@@ -7,11 +7,11 @@ export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url);
   const email = searchParams.get("email") || "";
   const folderId = Number(searchParams.get("folderId") || 0);
-  console.log('[GET] email ricevuta:', email, folderId);
+  console.log("[GET] email ricevuta:", email, folderId);
 
-  const user = await prisma.user.findUnique({ where: {email}})
+  const user = await prisma.user.findUnique({ where: { email } });
 
-  console.log('[GET] user ricevuto:', user);
+  console.log("[GET] user ricevuto:", user);
   if (!user) return NextResponse.error();
 
   const notes = await prisma.note.findMany({
@@ -23,15 +23,23 @@ export async function GET(request: NextRequest) {
 
 // Gestione della richiesta POST
 export async function POST(request: NextRequest) {
+  const { searchParams } = new URL(request.url);
+  const email = searchParams.get("email") || "";
   const body = await request.json();
-  const { title, content, userId } = body;
-  console.log('[POST] userId ricevuto:', userId);
+  const { title, content, folderId } = body;
+  console.log("[POST] note ricevuta:", title, content);
+
+  const user = await prisma.user.findUnique({ where: { email } });
+
+  console.log("[GET] user ricevuto:", user);
+  if (!user) return NextResponse.error();
 
   const newNote = await prisma.note.create({
     data: {
       title,
       content,
-      userId,
+      folderId,
+      userId: user.id,
     },
   });
 
@@ -48,6 +56,6 @@ export async function OPTIONS(request: NextRequest) {
         "Access-Control-Allow-Headers": "Content-Type",
       },
       status: 200,
-    }
+    },
   );
 }

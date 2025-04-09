@@ -15,7 +15,7 @@ export type TRichNoteProps = {
   content: string;
   disableLeftBorder: boolean;
   onNoteSaved?: (e: CustomEvent) => void;
-}
+};
 
 export const RichNote: FC<TRichNoteProps> = (props) => {
   useEffect(() => {
@@ -25,5 +25,11 @@ export const RichNote: FC<TRichNoteProps> = (props) => {
     };
   }, []);
 
-  return <RichNoteWrapper title={props.title} content={props.content} disableLeftBorder/>;
+  return (
+    <RichNoteWrapper
+      title={props.title}
+      content={props.content}
+      disableLeftBorder
+    />
+  );
 };

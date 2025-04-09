@@ -6,11 +6,11 @@ import prisma from "@/_lib/utils/prisma";
 export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url);
   const email = searchParams.get("email") || "";
-  console.log('[GET] email ricevuta:', email);
+  console.log("[GET] email ricevuta:", email);
 
-  const user = await prisma.user.findUnique({ where: {email}})
+  const user = await prisma.user.findUnique({ where: { email } });
 
-  console.log('[GET] user ricevuto:', user);
+  console.log("[GET] user ricevuto:", user);
   if (!user) return NextResponse.error();
 
   const notes = await prisma.folder.findMany({
@@ -20,22 +20,28 @@ export async function GET(request: NextRequest) {
   return NextResponse.json(notes);
 }
 
-// Gestione della richiesta POST
-// export async function POST(request: NextRequest) {
-//   const body = await request.json();
-//   const { title, content, userId } = body;
-//   console.log('[POST] userId ricevuto:', userId);
-//
-//   const newNote = await prisma.note.create({
-//     data: {
-//       title,
-//       content,
-//       userId,
-//     },
-//   });
-//
-//   return NextResponse.json(newNote, { status: 201 });
-// }
+//Gestione della richiesta POST
+export async function POST(request: NextRequest) {
+  const { searchParams } = new URL(request.url);
+  const email = searchParams.get("email") || "";
+  const body = await request.json();
+  const { name } = body;
+  console.log('[POST] userId ricevuto:', name);
+
+  const user = await prisma.user.findUnique({ where: { email } });
+
+  console.log("[GET] user ricevuto:", user);
+  if (!user) return NextResponse.error();
+
+  const newNote = await prisma.folder.create({
+    data: {
+      name,
+      userId: user.id,
+    },
+  });
+
+  return NextResponse.json(newNote, { status: 201 });
+}
 
 export async function OPTIONS(request: NextRequest) {
   return NextResponse.json(
@@ -47,6 +53,6 @@ export async function OPTIONS(request: NextRequest) {
         "Access-Control-Allow-Headers": "Content-Type",
       },
       status: 200,
-    }
+    },
   );
 }
