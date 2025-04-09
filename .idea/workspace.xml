@@ -5,22 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="106ba57b-d8cf-4075-8ef8-72acb0355fd9" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/_lib/components/SignIn.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/api/auth/[...nextauth]/route.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/api/notes/[id]/route.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/api/notes/route.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/_lib/hooks/useDebounce.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/prisma/dev.db" beforeDir="false" afterPath="$PROJECT_DIR$/prisma/dev.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/prisma/dev.db-journal" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/prisma/prisma.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/_lib/utils/prisma.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/prisma/schema.prisma" beforeDir="false" afterPath="$PROJECT_DIR$/prisma/schema.prisma" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/file.svg" beforeDir="false" afterPath="$PROJECT_DIR$/public/file.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/_lib/RichNote.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/_lib/components/RichNote.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/globals.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/globals.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/layout.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/_lib/components/Sidebar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/_lib/components/Sidebar.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/api/notes/[id]/route.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/api/notes/[id]/route.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/page.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -46,28 +37,28 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "main",
-    "last_opened_file_path": "/Users/fifogipo/Documents/Varie/note-craft/src/app/api/folders",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "npm.dev.executor": "Run",
-    "npm.migrations.executor": "Run",
-    "prettierjs.PrettierConfiguration.Package": "/Users/fifogipo/Documents/Varie/note-craft/node_modules/prettier",
-    "settings.editor.selected.configurable": "database.query.execution",
-    "ts.external.directory.path": "/Users/fifogipo/Documents/Varie/note-craft/node_modules/typescript/lib",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/fifogipo/Documents/Varie/note-craft/src/app/api/folders&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;npm.dev.executor&quot;: &quot;Run&quot;,
+    &quot;npm.migrations.executor&quot;: &quot;Run&quot;,
+    &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;/Users/fifogipo/Documents/Varie/note-craft/node_modules/prettier&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;vcs.Git&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/Users/fifogipo/Documents/Varie/note-craft/node_modules/typescript/lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "ChangesTree.GroupingKeys": []
+  &quot;keyToStringList&quot;: {
+    &quot;ChangesTree.GroupingKeys&quot;: []
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/app/api/folders" />
@@ -129,7 +120,9 @@
       <workItem from="1744047008729" duration="10954000" />
       <workItem from="1744096635549" duration="4781000" />
       <workItem from="1744126019565" duration="549000" />
-      <workItem from="1744126580647" duration="14825000" />
+      <workItem from="1744126580647" duration="15240000" />
+      <workItem from="1744192663322" duration="4588000" />
+      <workItem from="1744197269260" duration="1343000" />
     </task>
     <task id="LOCAL-00001" summary="init project and installed component">
       <option name="closed" value="true" />
@@ -139,7 +132,15 @@
       <option name="project" value="LOCAL" />
       <updated>1743978378446</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="create prime relazioni e interazioni con file e cartelle">
+      <option name="closed" value="true" />
+      <created>1744190013612</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1744190013612</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -147,6 +148,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="init project and installed component" />
-    <option name="LAST_COMMIT_MESSAGE" value="init project and installed component" />
+    <MESSAGE value="create prime relazioni e interazioni con file e cartelle" />
+    <option name="LAST_COMMIT_MESSAGE" value="create prime relazioni e interazioni con file e cartelle" />
   </component>
 </project>

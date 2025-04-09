@@ -38,6 +38,21 @@ export async function POST(request: NextRequest) {
   return NextResponse.json(newNote, { status: 201 });
 }
 
+// Gestione della richiesta PATCH
+export async function PATCH(request: NextRequest, { params }: { params: { id: string } }) {
+  const id = Number(params.id);
+  const body = await request.json();
+
+  console.log('[POST] userId ricevuto:', id);
+
+  const newNote = await prisma.note.update({
+    where: { id },
+    data: body,
+  });
+
+  return NextResponse.json(newNote, { status: 201 });
+}
+
 export async function OPTIONS(request: NextRequest) {
   return NextResponse.json(
     {},

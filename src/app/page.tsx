@@ -1,18 +1,19 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import { useSession } from "next-auth/react";
 import SignIn from "@/_lib/components/SignIn";
 import Sidebar from "@/_lib/components/Sidebar";
 import { RichNote } from "@/_lib/components/RichNote";
 import FileList from "@/_lib/components/FileList";
+import { useDebounced } from "@/_lib/hooks/useDebounce";
 
 const Home = () => {
   const { data: session } = useSession();
   const [notes, setNotes] = useState<Note[]>([]);
   const [folders, setFolders] = useState<Folder[]>([]);
   const [activeNote, setActiveNote] = useState<Note | undefined>(undefined);
-  const [newNote, setNewNote] = useState<Partial<Note>>({ title: "", content: "" });
+  const activeNoteRef = useRef<Note | undefined>(activeNote);
 
   const fetchData = async () => {
     try {
@@ -52,34 +53,45 @@ const Home = () => {
   const changeFolderHandler = (folderId: number) => getNotesByFolder(folderId).then();
   const changeFileHandler = (fileId: number) => getNoteDetail(fileId).then();
 
-  const handleAddNote = async () => {
-    if (!session) return;
+  const handleAddNote = async (newNote: Partial<Note>) => {
+    if (!session || !activeNoteRef.current) return;
     try {
-      const folderId = folders.length > 0 ? folders[0].id : undefined;
-      const response = await fetch("/api/notes", {
-        method: "POST",
+      const tempNote: Note = {
+        ...activeNoteRef.current,
+        content: newNote.content ? newNote.content : activeNoteRef.current.content,
+        title: newNote.title ? newNote.title : activeNoteRef.current.title,
+      };
+      const response = await fetch(`/api/notes/${tempNote.id}`, {
+        method: "PATCH",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          ...newNote,
-          userId: session.user?.email,
-          folderId,
-        }),
+        body: JSON.stringify(tempNote),
       });
+
       if (!response.ok) {
         throw new Error("Errore durante l'inserimento della nota");
       }
       const insertedNote: Note = await response.json();
 
-      setNotes((prevNotes) => [...prevNotes, insertedNote]);
-      setNewNote({ title: "", content: "" });
+      setActiveNote(insertedNote);
+      setNotes((prevNotes) =>
+        prevNotes.map((note) =>
+          note.id === insertedNote.id ? insertedNote : note
+        )
+      );
+
     } catch (error) {
       console.error("Errore nella aggiunta della nota", error);
     }
   };
+  const debouncedHandleAddNote = useDebounced(handleAddNote, 1500);
 
   useEffect(() => {
     if (session?.user?.email) fetchData().then();
   }, [session]);
+
+  useEffect(() => {
+    activeNoteRef.current = activeNote;
+  }, [activeNote]);
 
   return (
     <div>
@@ -95,7 +107,7 @@ const Home = () => {
           <FileList files={notes} changeFiles={changeFileHandler} />
           <RichNote
             disableLeftBorder
-            onNoteSaved={(e) => console.log("save", e.detail)}
+            onNoteSaved={(e) => debouncedHandleAddNote(e.detail)}
             title={activeNote ? activeNote.title : ""}
             content={activeNote ? activeNote.content : ""}
           />

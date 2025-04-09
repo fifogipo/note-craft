@@ -29,31 +29,36 @@ const Sidebar: FC<TSidebarProps> = ({ session, folder, changeFolder }) => {
       <div className="bg-[#008080] p-2 rounded-tl-lg h-[50px] border-b border-b-[#333333]">
         <button className="flex gap-2 items-center h-full cursor-pointer">
           <span className="border border-white flex items-center justify-center rounded-full w-[18px] h-[18px]">
-            <img src="/plus.svg" alt="add icon" height={8} width={8} />
+            <img
+              src="/plus.svg"
+              alt="add icon"
+              height={8}
+              width={8}
+            />
           </span>
           <span>Nuova cartella</span>
         </button>
       </div>
       <div className="flex-1 p-4 border-r border-r-[#333333]">
-        {folder && folder.length > 0 ? (
-          folder.map((f) => (
-            <button
-              key={f.id}
-              onClick={() => setActiveFolderId(f.id)}
-              className={`flex gap-2 items-center px-2 py-1 w-full cursor-pointer rounded transition-all duration-300 ease-in-out hover:bg-[#333333] ${
-                activeFolderId === f.id ? "bg-[#333333]" : ""
-              }`}
-            >
-              <img
-                src="/folder-closed.svg"
-                height={12}
-                width={12}
-                alt="folder icon"
-              />
-              <span>{f.name}</span>
-            </button>
-          ))
-        ) : null}
+        {folder && folder.length > 0
+          ? folder.map((f) => (
+              <button
+                key={f.id}
+                onClick={() => setActiveFolderId(f.id)}
+                className={`flex gap-2 items-center px-2 py-1 w-full cursor-pointer rounded transition-all duration-300 ease-in-out hover:bg-[#333333] ${
+                  activeFolderId === f.id ? "bg-[#333333]" : ""
+                }`}
+              >
+                <img
+                  src={activeFolderId !== f.id ? "/folder-closed.svg" : "/folder-open.svg"}
+                  height={12}
+                  width={12}
+                  alt="folder icon"
+                />
+                <span>{f.name}</span>
+              </button>
+            ))
+          : null}
       </div>
       <div className="flex gap-4 justify-between items-center px-2 pb-2 border-r border-r-[#333333]">
         <div className="flex gap-2 items-center">
@@ -66,7 +71,10 @@ const Sidebar: FC<TSidebarProps> = ({ session, folder, changeFolder }) => {
           />
           <span>{session.user?.name || ""}</span>
         </div>
-        <button className="w-fit cursor-pointer" onClick={() => signOut()}>
+        <button
+          className="w-fit cursor-pointer"
+          onClick={() => signOut()}
+        >
           <img
             src="/right-from-bracket.svg"
             alt="log out"
