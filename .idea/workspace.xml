@@ -5,20 +5,42 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="106ba57b-d8cf-4075-8ef8-72acb0355fd9" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.prettierrc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/_lib/RichNote.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/_lib/components/SignIn.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/api/auth/[...nextauth]/route.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/api/notes/[id]/route.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/api/notes/route.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/prisma/dev.db" beforeDir="false" afterPath="$PROJECT_DIR$/prisma/dev.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/prisma/dev.db-journal" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/prisma/prisma.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/_lib/utils/prisma.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/prisma/schema.prisma" beforeDir="false" afterPath="$PROJECT_DIR$/prisma/schema.prisma" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/file.svg" beforeDir="false" afterPath="$PROJECT_DIR$/public/file.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/_lib/RichNote.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/_lib/components/RichNote.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/globals.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/globals.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/layout.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/page.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FormatOnSaveOptions">
+    <option name="myRunOnSave" value="false" />
+    <option name="myAllFileTypesSelected" value="true" />
+    <option name="mySelectedFileTypes">
+      <set />
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 8
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 8
+}</component>
   <component name="ProjectId" id="2vMtql9MoieGjFyzEcaGLkO186o" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -29,24 +51,37 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "git-widget-placeholder": "main",
+    "last_opened_file_path": "/Users/fifogipo/Documents/Varie/note-craft/src/app/api/folders",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "npm.dev.executor": "Run",
+    "npm.migrations.executor": "Run",
     "prettierjs.PrettierConfiguration.Package": "/Users/fifogipo/Documents/Varie/note-craft/node_modules/prettier",
-    "settings.editor.selected.configurable": "settings.javascript.prettier",
+    "settings.editor.selected.configurable": "database.query.execution",
     "ts.external.directory.path": "/Users/fifogipo/Documents/Varie/note-craft/node_modules/typescript/lib",
     "vue.rearranger.settings.migration": "true"
+  },
+  "keyToStringList": {
+    "ChangesTree.GroupingKeys": []
   }
 }]]></component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/app/api/folders" />
+      <recent name="$PROJECT_DIR$/public" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/src/app/api/notes/[id]" />
+      <recent name="$PROJECT_DIR$/src/app/api/notes" />
+      <recent name="$PROJECT_DIR$/src/_lib/components/side-bar" />
+      <recent name="$PROJECT_DIR$/src/_lib/components" />
+      <recent name="$PROJECT_DIR$/src/_lib/utils" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="npm.dev">
     <configuration name="dev" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/package.json" />
       <command value="run" />
@@ -57,9 +92,20 @@
       <envs />
       <method v="2" />
     </configuration>
+    <configuration name="migrations" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="migrations" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="npm.dev" />
+        <item itemvalue="npm.migrations" />
       </list>
     </recent_temporary>
   </component>
@@ -78,11 +124,29 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1743966963800</updated>
-      <workItem from="1743966965036" duration="10505000" />
+      <workItem from="1743966965036" duration="10593000" />
+      <workItem from="1744010839065" duration="109000" />
+      <workItem from="1744047008729" duration="10954000" />
+      <workItem from="1744096635549" duration="4781000" />
+      <workItem from="1744126019565" duration="549000" />
+      <workItem from="1744126580647" duration="14825000" />
     </task>
+    <task id="LOCAL-00001" summary="init project and installed component">
+      <option name="closed" value="true" />
+      <created>1743978378446</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1743978378446</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="init project and installed component" />
+    <option name="LAST_COMMIT_MESSAGE" value="init project and installed component" />
   </component>
 </project>

@@ -13,10 +13,31 @@ generator client {
   provider = "prisma-client-js"
 }
 
+model User {
+  id        String   @unique @id @default(uuid())
+  email     String   @unique
+  name      String?
+  notes     Note[]
+  folders   Folder[]
+  createdAt DateTime @default(now())
+}
+
+model Folder {
+  id        Int      @id @default(autoincrement())
+  name      String
+  user      User     @relation(fields: [userId], references: [id])
+  userId    String
+  notes     Note[]
+  createdAt DateTime @default(now())
+}
+
 model Note {
-  id      Int    @id @default(autoincrement())
-  title   String
-  content String
-  userId  String
+  id        Int      @id @default(autoincrement())
+  title     String
+  content   String
+  folder    Folder?  @relation(fields: [folderId], references: [id])
+  folderId  Int?
+  user      User     @relation(fields: [userId], references: [id])
+  userId    String
   createdAt DateTime @default(now())
 }
