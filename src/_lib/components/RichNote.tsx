@@ -23,7 +23,7 @@ export const RichNote: FC<TRichNoteProps> = (props) => {
     return () => {
       window.removeEventListener("note-saved", props.onNoteSaved as EventListener);
     };
-  }, []);
+  }, [props.onNoteSaved]);
 
   return (
     <RichNoteWrapper

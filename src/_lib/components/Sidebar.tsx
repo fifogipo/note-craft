@@ -39,7 +39,7 @@ const Sidebar: FC<TSidebarProps> = ({
         changeFolder(activeFolderId);
       }
     }
-  }, [folders, activeFolderId, changeFolder]);
+  }, [folders, activeFolderId, changeFolder, isMobile]);
 
   const handleRenameConfirm = async (folderId: number) => {
     if (editingName.trim() !== "") {
@@ -85,7 +85,7 @@ const Sidebar: FC<TSidebarProps> = ({
                     type="text"
                     value={editingName}
                     onChange={(e) => setEditingName(e.target.value)}
-                    className="px-2 py-1 min-w-[200px] w-full rounded border border-border-divider"
+                    className="px-2 py-1  w-full rounded border border-border-divider"
                   />
                   <button
                     onClick={() => handleRenameConfirm(f.id)}
@@ -121,7 +121,7 @@ const Sidebar: FC<TSidebarProps> = ({
                         setCurrentStep(1);
                       }
                     }}
-                    className={`flex gap-2 items-center px-2 py-1 min-w-[200px] w-full cursor-pointer rounded transition-all duration-300 ease-in-out hover:bg-border-divider ${
+                    className={`flex gap-2 items-center px-2 py-1  w-full cursor-pointer rounded transition-all duration-300 ease-in-out hover:bg-border-divider ${
                       activeFolderId === f.id ? "bg-border-divider" : ""
                     }`}
                   >

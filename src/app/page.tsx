@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
 import SignIn from "@/_lib/components/SignIn";
 import Sidebar from "@/_lib/components/Sidebar";
@@ -21,8 +21,8 @@ const Home = () => {
   const [activeFolderId, setActiveFolderId] = useState<number | undefined>(undefined);
   const [activeNote, setActiveNote] = useState<Note | undefined>(undefined);
 
-  const { folders, loading: foldersLoading, error: foldersError, refreshFolders } = useFolder(email);
-  const { notes, loading: notesLoading, error: notesError, setNotes } = useNote(email, activeFolderId);
+  const { folders, refreshFolders } = useFolder(email);
+  const { notes, setNotes } = useNote(email, activeFolderId);
   const activeFolder = folders.find((f) => f.id === activeFolderId);
 
   const getNoteDetail = useCallback(

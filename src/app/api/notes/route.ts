@@ -46,6 +46,7 @@ export async function POST(request: NextRequest) {
   return NextResponse.json(newNote, { status: 201 });
 }
 
+
 export async function OPTIONS(request: NextRequest) {
   return NextResponse.json(
     {},

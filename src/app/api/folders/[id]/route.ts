@@ -3,14 +3,15 @@ import { NextRequest, NextResponse } from "next/server";
 import prisma from "@/_lib/utils/prisma";
 
 //Gestione della richiesta PATCH
-export async function PATCH(request: NextRequest, { params }: { params: { id: string } }) {
-  const id = Number(params.id);
+export async function PATCH(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params;
+  const folderId = Number(id);
   const body = await request.json();
   const { name } = body;
   console.log("[PATCH] userId ricevuto:", name);
 
   const newNote = await prisma.folder.update({
-    where: { id },
+    where: { id: folderId },
     data: { name },
   });
 
@@ -18,18 +19,19 @@ export async function PATCH(request: NextRequest, { params }: { params: { id: st
 }
 
 // Gestione della richiesta DELETE
-export async function DELETE(request: NextRequest, { params }: { params: { id: string } }) {
-  const id = Number(params.id);
-  console.log("[DELETE] Cartella da eliminare:", id);
+export async function DELETE(_request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params;
+  const folderId = Number(id);
+  console.log("[DELETE] Cartella da eliminare:", folderId);
 
   try {
     const deletedFolder = await prisma.$transaction(async (tx) => {
       await tx.note.deleteMany({
-        where: { folderId: id },
+        where: { folderId },
       });
 
       return tx.folder.delete({
-        where: { id },
+        where: { id: folderId },
       });
     });
 
@@ -39,6 +41,7 @@ export async function DELETE(request: NextRequest, { params }: { params: { id: s
     return NextResponse.json({ error: "Errore durante l'eliminazione" }, { status: 500 });
   }
 }
+
 
 export async function OPTIONS(request: NextRequest) {
   return NextResponse.json(

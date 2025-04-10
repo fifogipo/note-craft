@@ -22,7 +22,7 @@ const FileList: FC<TFileListProps> = ({ files, isMobile, changeFiles, onAddNote,
       setActiveFileId(files[0].id);
       changeFiles(files[0].id);
     }
-  }, [files, activeFileId, changeFiles]);
+  }, [files, activeFileId, changeFiles, isMobile]);
 
   return (
     <div className="flex-1 flex flex-col h-full bg-background min-w-[250px] w-full md:w-auto">
@@ -59,7 +59,7 @@ const FileList: FC<TFileListProps> = ({ files, isMobile, changeFiles, onAddNote,
                     setCurrentStep(2);
                   }
                 }}
-                className={`flex gap-2 items-center px-2 py-1 min-w-[200px] w-full cursor-pointer rounded transition-all duration-300 ease-in-out hover:bg-border-divider ${
+                className={`flex gap-2 items-center px-2 py-1  w-full cursor-pointer rounded transition-all duration-300 ease-in-out hover:bg-border-divider ${
                   activeFileId === f.id ? "bg-border-divider" : ""
                 }`}
               >
