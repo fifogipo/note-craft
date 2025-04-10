@@ -42,7 +42,6 @@ export async function DELETE(_request: NextRequest, { params }: { params: Promis
   }
 }
 
-
 export async function OPTIONS(request: NextRequest) {
   return NextResponse.json(
     {},

@@ -10,30 +10,44 @@ export type TBreadcrumbProps = {
 
 export const Breadcrumb: FC<TBreadcrumbProps> = ({ activeFolder, activeNote, currentStep, setCurrentStep }) => {
   return (
-    <nav className="p-2 w-full text-sm bg-primary-darker flex items-center">
-      <ul className="flex items-center gap-2">
-        <li>
+    <nav
+      className="p-2 w-full text-sm bg-primary-darker flex items-center"
+      aria-label="Breadcrumb"
+    >
+      <ul
+        className="flex items-center gap-2"
+        role="list"
+      >
+        <li role="listitem">
           <button
             onClick={() => setCurrentStep(0)}
             className="underline hover:text-secondary"
+            aria-label="Vai alle cartelle"
+            aria-current={currentStep === 0 ? "page" : undefined}
           >
             Folder
           </button>
         </li>
         {((currentStep === 1 && activeFolder) || (activeNote && activeFolder)) && (
           <>
-            <li className="h-[20px] flex items-center">
+            <li
+              role="listitem"
+              className="h-[20px] flex items-center"
+              aria-hidden="true"
+            >
               <Image
                 src="/chevron-right.svg"
-                alt="arrow right icon"
+                alt=""
                 height={6}
                 width={6}
               />
             </li>
-            <li>
+            <li role="listitem">
               <button
                 onClick={() => setCurrentStep(1)}
                 className="underline hover:text-secondary"
+                aria-label={`Vai alla cartella ${activeFolder?.name}`}
+                aria-current={currentStep === 1 ? "page" : undefined}
               >
                 {activeFolder.name}
               </button>
@@ -42,16 +56,20 @@ export const Breadcrumb: FC<TBreadcrumbProps> = ({ activeFolder, activeNote, cur
         )}
         {currentStep === 2 && activeNote && (
           <>
-            <li className="h-[20px] flex items-center">
+            <li
+              role="listitem"
+              className="h-[20px] flex items-center"
+              aria-hidden="true"
+            >
               <Image
                 src="/chevron-right.svg"
-                alt="arrow right icon"
+                alt=""
                 height={6}
                 width={6}
               />
             </li>
-            <li>
-              <span>{activeNote.title}</span>
+            <li role="listitem">
+              <span aria-current="page">{activeNote.title}</span>
             </li>
           </>
         )}

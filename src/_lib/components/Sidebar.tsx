@@ -55,16 +55,21 @@ const Sidebar: FC<TSidebarProps> = ({
   };
 
   return (
-    <div className="flex-1 flex flex-col h-full bg-background min-w-[250px] w-full md:w-auto">
+    <div
+      className="bg-effect flex-1 flex flex-col h-full bg-background min-w-[250px] w-full md:w-auto"
+      role="region"
+      aria-label="Barra laterale delle cartelle"
+    >
       <div className="bg-primary p-2 h-[50px] border-b border-b-border-divider">
         <button
           onClick={onAddFolder}
           className="flex gap-2 items-center h-full cursor-pointer"
+          aria-label="Aggiungi nuova cartella"
         >
           <span className="border border-white flex items-center justify-center rounded-full w-[18px] h-[18px]">
             <Image
               src="/plus.svg"
-              alt="add icon"
+              alt="Icona aggiungi"
               height={8}
               width={8}
             />
@@ -72,11 +77,15 @@ const Sidebar: FC<TSidebarProps> = ({
           <span>New Folder</span>
         </button>
       </div>
-      <div className="flex-1 p-4 flex flex-col gap-2 border-r border-r-border-divider overflow-y-auto">
+      <div
+        className="flex-1 p-4 flex flex-col gap-2 border-r border-r-border-divider overflow-y-auto"
+        role="list"
+      >
         {folders && folders.length > 0 ? (
           folders.map((f) => (
             <div
               key={f.id}
+              role="listitem"
               className="flex items-center gap-2"
             >
               {editingFolderId === f.id ? (
@@ -85,15 +94,17 @@ const Sidebar: FC<TSidebarProps> = ({
                     type="text"
                     value={editingName}
                     onChange={(e) => setEditingName(e.target.value)}
-                    className="px-2 py-1  w-full rounded border border-border-divider"
+                    className="px-2 py-1 w-full rounded border border-border-divider"
+                    aria-label="Modifica nome cartella"
                   />
                   <button
                     onClick={() => handleRenameConfirm(f.id)}
                     className="cursor-pointer p-[0.4rem] rounded transition-colors duration-300 ease-in-out hover:bg-secondary"
+                    aria-label="Conferma modifica cartella"
                   >
                     <Image
                       src="/check.svg"
-                      alt="save icon"
+                      alt="Icona salva"
                       width={12}
                       height={12}
                     />
@@ -101,10 +112,11 @@ const Sidebar: FC<TSidebarProps> = ({
                   <button
                     onClick={handleRenameCancel}
                     className="cursor-pointer p-[0.4rem] rounded transition-colors duration-300 ease-in-out hover:bg-secondary"
+                    aria-label="Annulla modifica cartella"
                   >
                     <Image
                       src="/xmark.svg"
-                      alt="undo icon"
+                      alt="Icona annulla"
                       width={12}
                       height={12}
                     />
@@ -116,20 +128,19 @@ const Sidebar: FC<TSidebarProps> = ({
                     onClick={() => {
                       setActiveFolderId(f.id);
                       changeFolder(f.id);
-
                       if (setCurrentStep) {
                         setCurrentStep(1);
                       }
                     }}
-                    className={`flex gap-2 items-center px-2 py-1  w-full cursor-pointer rounded transition-all duration-300 ease-in-out hover:bg-border-divider ${
-                      activeFolderId === f.id ? "bg-border-divider" : ""
-                    }`}
+                    className={`flex gap-2 items-center px-2 py-1 w-full cursor-pointer rounded transition-all duration-300 ease-in-out hover:bg-border-divider ${activeFolderId === f.id ? "bg-border-divider" : ""}`}
+                    aria-current={activeFolderId === f.id ? "true" : "false"}
+                    aria-label={`Seleziona cartella ${f.name}`}
                   >
                     <Image
                       src={activeFolderId === f.id ? "/folder-open.svg" : "/folder-closed.svg"}
                       height={12}
                       width={12}
-                      alt="folder icon"
+                      alt="Icona cartella"
                     />
                     <span>{f.name}</span>
                   </button>
@@ -139,10 +150,11 @@ const Sidebar: FC<TSidebarProps> = ({
                       setEditingName(f.name);
                     }}
                     className="cursor-pointer p-[0.4rem] rounded transition-colors duration-300 ease-in-out hover:bg-secondary"
+                    aria-label={`Modifica cartella ${f.name}`}
                   >
                     <Image
                       src="/pen.svg"
-                      alt="modify icon"
+                      alt="Icona modifica"
                       width={12}
                       height={12}
                     />
@@ -150,10 +162,11 @@ const Sidebar: FC<TSidebarProps> = ({
                   <button
                     onClick={() => onDeleteFolder(f.id)}
                     className="cursor-pointer p-[0.4rem] rounded transition-colors duration-300 ease-in-out hover:bg-secondary"
+                    aria-label={`Elimina cartella ${f.name}`}
                   >
                     <Image
                       src="/trash.svg"
-                      alt="delete icon"
+                      alt="Icona elimina"
                       width={12}
                       height={12}
                     />
@@ -173,7 +186,7 @@ const Sidebar: FC<TSidebarProps> = ({
           <Image
             className="rounded-full"
             src={session.user?.image || ""}
-            alt="user image"
+            alt="Immagine utente"
             width={32}
             height={32}
           />
@@ -182,10 +195,11 @@ const Sidebar: FC<TSidebarProps> = ({
         <button
           className="w-fit cursor-pointer"
           onClick={() => signOut()}
+          aria-label="Esci"
         >
           <Image
             src="/right-from-bracket.svg"
-            alt="log out"
+            alt="Icona logout"
             width={18}
             height={18}
           />

@@ -25,16 +25,21 @@ const FileList: FC<TFileListProps> = ({ files, isMobile, changeFiles, onAddNote,
   }, [files, activeFileId, changeFiles, isMobile]);
 
   return (
-    <div className="flex-1 flex flex-col h-full bg-background min-w-[250px] w-full md:w-auto">
+    <div
+      className="flex-1 flex flex-col h-full bg-background min-w-[250px] w-full md:w-auto"
+      role="region"
+      aria-label="Elenco delle note"
+    >
       <div className="bg-primary p-2 h-[50px] border-b border-b-border-divider">
         <button
           onClick={onAddNote}
           className="flex gap-2 items-center h-full cursor-pointer"
+          aria-label="Aggiungi nuova nota"
         >
           <span className="border border-white flex items-center justify-center rounded-full w-[18px] h-[18px]">
             <Image
               src="/plus.svg"
-              alt="add icon"
+              alt="Icona aggiungi"
               height={8}
               width={8}
             />
@@ -42,42 +47,45 @@ const FileList: FC<TFileListProps> = ({ files, isMobile, changeFiles, onAddNote,
           <span>New Note</span>
         </button>
       </div>
-      <div className="flex-1 p-4 flex flex-col gap-2 border-r border-r-border-divider overflow-y-auto">
+      <div
+        className="flex-1 p-4 flex flex-col gap-2 border-r border-r-border-divider overflow-y-auto"
+        role="list"
+      >
         {files && files.length > 0 ? (
           files.map((f) => (
             <div
               key={f.id}
+              role="listitem"
               className="flex items-center gap-2"
             >
               <button
-                key={f.id}
                 onClick={() => {
                   setActiveFileId(f.id);
                   changeFiles(f.id);
-
                   if (setCurrentStep) {
                     setCurrentStep(2);
                   }
                 }}
-                className={`flex gap-2 items-center px-2 py-1  w-full cursor-pointer rounded transition-all duration-300 ease-in-out hover:bg-border-divider ${
-                  activeFileId === f.id ? "bg-border-divider" : ""
-                }`}
+                className={`flex gap-2 items-center px-2 py-1 w-full cursor-pointer rounded transition-all duration-300 ease-in-out hover:bg-border-divider ${activeFileId === f.id ? "bg-border-divider" : ""}`}
+                aria-current={activeFileId === f.id ? "true" : "false"}
+                aria-label={`Seleziona nota ${f.title}`}
               >
                 <Image
                   src="/file.svg"
                   height={12}
                   width={12}
-                  alt="file icon"
+                  alt="Icona file"
                 />
                 <span>{f.title}</span>
               </button>
               <button
                 onClick={() => onDeleteNote(f.id)}
                 className="cursor-pointer p-[0.4rem] rounded transition-colors duration-300 ease-in-out hover:bg-secondary"
+                aria-label={`Elimina nota ${f.title}`}
               >
                 <Image
                   src="/trash.svg"
-                  alt="delete icon"
+                  alt="Icona elimina"
                   width={12}
                   height={12}
                 />

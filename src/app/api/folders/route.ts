@@ -26,7 +26,7 @@ export async function POST(request: NextRequest) {
   const email = searchParams.get("email") || "";
   const body = await request.json();
   const { name } = body;
-  console.log('[POST] userId ricevuto:', name);
+  console.log("[POST] userId ricevuto:", name);
 
   const user = await prisma.user.findUnique({ where: { email } });
 
@@ -42,7 +42,6 @@ export async function POST(request: NextRequest) {
 
   return NextResponse.json(newNote, { status: 201 });
 }
-
 
 export async function OPTIONS(request: NextRequest) {
   return NextResponse.json(

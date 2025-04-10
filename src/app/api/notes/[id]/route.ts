@@ -51,7 +51,6 @@ export async function DELETE(request: NextRequest, { params }: { params: Promise
   return NextResponse.json(newNote, { status: 201 });
 }
 
-
 export async function OPTIONS(request: NextRequest) {
   return NextResponse.json(
     {},

@@ -76,3 +76,15 @@ main {
     @apply right-8 top-0 rounded-lg z-10;
   }
 }
+
+.bg-effect {
+  position: relative;
+
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: url("../../public/logo-big.svg") no-repeat center;
+    opacity: 0.2;
+  }
+}
