@@ -1,31 +1,44 @@
 import { FC, useState, useEffect } from "react";
 import { signOut } from "next-auth/react";
 import { Session } from "next-auth";
+import { Folder } from "@prisma/client";
 
 type TSidebarProps = {
   session: Session;
-  folder: Folder[];
+  folders: Folder[];
+  isMobile: boolean;
   changeFolder: (folderId: number) => void;
   onAddFolder: () => void;
   onRenameFolder: (folderId: number, newName: string) => Promise<void>;
   onDeleteFolder: (folderId: number) => Promise<void>;
+  setCurrentStep?: (currentStep: number) => void;
 };
 
-const Sidebar: FC<TSidebarProps> = ({ session, folder, changeFolder, onAddFolder, onRenameFolder, onDeleteFolder }) => {
+const Sidebar: FC<TSidebarProps> = ({
+  session,
+  folders,
+  isMobile,
+  changeFolder,
+  onAddFolder,
+  onRenameFolder,
+  onDeleteFolder,
+  setCurrentStep,
+}) => {
   const [activeFolderId, setActiveFolderId] = useState<number | null>(null);
   const [editingFolderId, setEditingFolderId] = useState<number | null>(null);
   const [editingName, setEditingName] = useState<string>("");
 
   useEffect(() => {
-    if (folder && folder.length > 0) {
-      if (activeFolderId === null || !folder.some((f) => f.id === activeFolderId)) {
-        setActiveFolderId(folder[0].id);
-        changeFolder(folder[0].id);
+    if (isMobile) return;
+    if (folders && folders.length > 0) {
+      if (activeFolderId === null || !folders.some((f) => f.id === activeFolderId)) {
+        setActiveFolderId(folders[0].id);
+        changeFolder(folders[0].id);
       } else {
         changeFolder(activeFolderId);
       }
     }
-  }, [folder, activeFolderId, changeFolder]);
+  }, [folders, activeFolderId, changeFolder]);
 
   const handleRenameConfirm = async (folderId: number) => {
     if (editingName.trim() !== "") {
@@ -41,8 +54,8 @@ const Sidebar: FC<TSidebarProps> = ({ session, folder, changeFolder, onAddFolder
   };
 
   return (
-    <div className="flex flex-col h-full rounded-l-lg bg-background min-w-[250px] w-full md:w-auto">
-      <div className="bg-primary p-2 rounded-tl-lg h-[50px] border-b border-b-border-divider">
+    <div className="flex-1 flex flex-col h-full bg-background min-w-[250px] w-full md:w-auto">
+      <div className="bg-primary p-2 h-[50px] border-b border-b-border-divider">
         <button
           onClick={onAddFolder}
           className="flex gap-2 items-center h-full cursor-pointer"
@@ -59,8 +72,8 @@ const Sidebar: FC<TSidebarProps> = ({ session, folder, changeFolder, onAddFolder
         </button>
       </div>
       <div className="flex-1 p-4 flex flex-col gap-2 border-r border-r-border-divider overflow-y-auto">
-        {folder && folder.length > 0 ? (
-          folder.map((f) => (
+        {folders && folders.length > 0 ? (
+          folders.map((f) => (
             <div
               key={f.id}
               className="flex items-center gap-2"
@@ -71,7 +84,7 @@ const Sidebar: FC<TSidebarProps> = ({ session, folder, changeFolder, onAddFolder
                     type="text"
                     value={editingName}
                     onChange={(e) => setEditingName(e.target.value)}
-                    className="px-2 py-1 w-[200px] rounded border border-border-divider"
+                    className="px-2 py-1 min-w-[200px] w-full rounded border border-border-divider"
                   />
                   <button
                     onClick={() => handleRenameConfirm(f.id)}
@@ -102,8 +115,12 @@ const Sidebar: FC<TSidebarProps> = ({ session, folder, changeFolder, onAddFolder
                     onClick={() => {
                       setActiveFolderId(f.id);
                       changeFolder(f.id);
+
+                      if (setCurrentStep) {
+                        setCurrentStep(1);
+                      }
                     }}
-                    className={`flex gap-2 items-center px-2 py-1 w-[200px] cursor-pointer rounded transition-all duration-300 ease-in-out hover:bg-border-divider ${
+                    className={`flex gap-2 items-center px-2 py-1 min-w-[200px] w-full cursor-pointer rounded transition-all duration-300 ease-in-out hover:bg-border-divider ${
                       activeFolderId === f.id ? "bg-border-divider" : ""
                     }`}
                   >
@@ -129,7 +146,10 @@ const Sidebar: FC<TSidebarProps> = ({ session, folder, changeFolder, onAddFolder
                       height={12}
                     />
                   </button>
-                  <button onClick={() => onDeleteFolder(f.id)} className="cursor-pointer p-[0.4rem] rounded transition-colors duration-300 ease-in-out hover:bg-secondary">
+                  <button
+                    onClick={() => onDeleteFolder(f.id)}
+                    className="cursor-pointer p-[0.4rem] rounded transition-colors duration-300 ease-in-out hover:bg-secondary"
+                  >
                     <img
                       src="/trash.svg"
                       alt="delete icon"
@@ -142,7 +162,7 @@ const Sidebar: FC<TSidebarProps> = ({ session, folder, changeFolder, onAddFolder
             </div>
           ))
         ) : (
-          <span className="text-primary flex gap-2 items-center px-2 py-1 w-[265.6px] cursor-pointer rounded">
+          <span className="text-primary flex gap-2 items-center px-2 py-1 min-w-[265.6px] w-full cursor-pointer rounded">
             No Folders
           </span>
         )}

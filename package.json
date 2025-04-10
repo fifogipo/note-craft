@@ -20,7 +20,7 @@
     "prisma": "^6.5.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "rich-note-component": "^1.0.19"
+    "rich-note-component": "^1.0.20"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",

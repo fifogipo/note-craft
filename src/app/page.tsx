@@ -9,16 +9,21 @@ import FileList from "@/_lib/components/FileList";
 import { useDebounced } from "@/_lib/hooks/useDebounce";
 import { useFolder } from "@/_lib/hooks/useFolder";
 import { useNote } from "@/_lib/hooks/useNote";
+import { useIsMobile } from "@/_lib/hooks/useIsMobile";
+import { Breadcrumb } from "@/_lib/components/Breadcrumb";
 
 const Home = () => {
   const { data: session } = useSession();
   const email = session?.user?.email;
+  const isMobile = useIsMobile();
 
+  const [currentStep, setCurrentStep] = useState(0);
   const [activeFolderId, setActiveFolderId] = useState<number | undefined>(undefined);
   const [activeNote, setActiveNote] = useState<Note | undefined>(undefined);
 
   const { folders, loading: foldersLoading, error: foldersError, refreshFolders } = useFolder(email);
   const { notes, loading: notesLoading, error: notesError, setNotes } = useNote(email, activeFolderId);
+  const activeFolder = folders.find((f) => f.id === activeFolderId);
 
   const getNoteDetail = useCallback(
     async (noteId: number | null) => {
@@ -36,18 +41,6 @@ const Home = () => {
     },
     [email],
   );
-
-  const handleNewNote = async () => {
-    if (!email) return;
-    await upsertNote({ title: "New Note", content: "" });
-  };
-
-  const handleSaveNote = async (noteData: Partial<Note>) => {
-    if (!email) return;
-    await upsertNote(noteData, activeNote);
-  };
-
-  const debouncedSaveNote = useDebounced(handleSaveNote, 1500);
 
   const upsertNote = async (newNote: Partial<Note>, currentNote?: Note) => {
     try {
@@ -78,6 +71,19 @@ const Home = () => {
     }
   };
 
+  const handleNewNote = async () => {
+    if (!email) return;
+    await upsertNote({ title: "New Note", content: "" });
+    if (isMobile) setCurrentStep(2);
+  };
+
+  const handleSaveNote = async (noteData: Partial<Note>) => {
+    if (!email) return;
+    await upsertNote(noteData, activeNote);
+  };
+
+  const debouncedSaveNote = useDebounced(handleSaveNote, 1500);
+
   const handleNewFolder = async () => {
     if (!email) return;
     try {
@@ -91,6 +97,7 @@ const Home = () => {
       }
 
       refreshFolders();
+      if (isMobile) setCurrentStep(1);
     } catch (error) {
       console.error("Errore nella creazione della cartella", error);
     }
@@ -133,7 +140,6 @@ const Home = () => {
 
   const handleDeleteNote = async (noteId: number) => {
     try {
-      debugger
       const response = await fetch(`/api/notes/${noteId}`, {
         method: "DELETE",
       });
@@ -151,6 +157,7 @@ const Home = () => {
 
   const handleSelectNote = (fileId: number | null) => {
     getNoteDetail(fileId).then();
+    if (isMobile) setCurrentStep(2);
   };
 
   useEffect(() => {
@@ -159,15 +166,58 @@ const Home = () => {
     }
   }, [folders, activeFolderId]);
 
+  if (!session) return <SignIn />;
+
   return (
     <div>
-      {!session ? (
-        <SignIn />
+      {isMobile ? (
+        <main className="flex flex-col">
+          <Breadcrumb
+            activeFolder={activeFolder}
+            activeNote={activeNote}
+            currentStep={currentStep}
+            setCurrentStep={setCurrentStep}
+          />
+          {currentStep === 0 && (
+            <Sidebar
+              session={session}
+              folders={folders}
+              isMobile={isMobile}
+              changeFolder={(folderId) => {
+                setActiveFolderId(folderId);
+                setCurrentStep(1);
+              }}
+              onAddFolder={handleNewFolder}
+              onRenameFolder={handleRenameFolder}
+              onDeleteFolder={handleDeleteFolder}
+              setCurrentStep={setCurrentStep}
+            />
+          )}
+          {currentStep === 1 && (
+            <FileList
+              files={notes}
+              isMobile={isMobile}
+              changeFiles={handleSelectNote}
+              onAddNote={handleNewNote}
+              onDeleteNote={handleDeleteNote}
+              setCurrentStep={setCurrentStep}
+            />
+          )}
+          {currentStep === 2 && (
+            <RichNote
+              disableBorder
+              onNoteSaved={(e) => debouncedSaveNote(e.detail)}
+              title={activeNote ? activeNote.title : ""}
+              content={activeNote ? activeNote.content : ""}
+            />
+          )}
+        </main>
       ) : (
         <main className="flex">
           <Sidebar
             session={session}
-            folder={folders}
+            folders={folders}
+            isMobile={isMobile}
             changeFolder={(folderId) => setActiveFolderId(folderId)}
             onAddFolder={handleNewFolder}
             onRenameFolder={handleRenameFolder}
@@ -175,12 +225,13 @@ const Home = () => {
           />
           <FileList
             files={notes}
+            isMobile={isMobile}
             changeFiles={handleSelectNote}
             onAddNote={handleNewNote}
             onDeleteNote={handleDeleteNote}
           />
           <RichNote
-            disableLeftBorder
+            disableBorder
             onNoteSaved={(e) => debouncedSaveNote(e.detail)}
             title={activeNote ? activeNote.title : ""}
             content={activeNote ? activeNote.content : ""}

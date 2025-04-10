@@ -4,7 +4,7 @@ import { signIn } from "next-auth/react";
 
 const SignIn = () => {
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen p-6 bg-background">
+    <div className="flex flex-col items-center justify-center min-h-[100dvh] p-6 bg-background">
       <div className="shape flex flex-col flex-1 items-center justify-between p-8 rounded-lg bg-accent max-h-[800px] min-w-[250px] w-full max-w-[400px]">
         <div className="shape-diff"></div>
         <div className="shape-diff-2"></div>

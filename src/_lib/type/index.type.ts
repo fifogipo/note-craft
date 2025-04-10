@@ -11,5 +11,5 @@ type Folder = {
   id: number;
   name: string;
   userId: string;
-  createdAt: string;
+  createdAt: Date;
 };

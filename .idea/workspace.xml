@@ -4,24 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="106ba57b-d8cf-4075-8ef8-72acb0355fd9" name="Changes" comment="modifica db">
-      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
+    <list default="true" id="106ba57b-d8cf-4075-8ef8-72acb0355fd9" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/_lib/hooks/useIsMobile.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/prisma/dev.db" beforeDir="false" afterPath="$PROJECT_DIR$/prisma/dev.db" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/_lib/components/FileList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/_lib/components/FileList.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/_lib/components/RichNote.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/_lib/components/RichNote.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/_lib/components/Sidebar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/_lib/components/Sidebar.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/_lib/components/SignIn.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/_lib/components/SignIn.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/_lib/type/index.type.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/_lib/type/index.type.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/_lib/utils/prisma.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/_lib/utils/prisma.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/api/folders/route.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/api/folders/route.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/api/notes/[id]/route.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/api/notes/[id]/route.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/api/notes/route.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/api/notes/route.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/globals.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/globals.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/providers.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/providers.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -141,7 +135,11 @@
       <workItem from="1744224127822" duration="5552000" />
       <workItem from="1744231118020" duration="59000" />
       <workItem from="1744231186060" duration="7464000" />
-      <workItem from="1744238669269" duration="665000" />
+      <workItem from="1744238669269" duration="863000" />
+      <workItem from="1744270903237" duration="3507000" />
+      <workItem from="1744274652274" duration="1052000" />
+      <workItem from="1744278810919" duration="1116000" />
+      <workItem from="1744280691009" duration="3216000" />
     </task>
     <task id="LOCAL-00001" summary="init project and installed component">
       <option name="closed" value="true" />
@@ -175,7 +173,23 @@
       <option name="project" value="LOCAL" />
       <updated>1744202029349</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="agganciate ultime api">
+      <option name="closed" value="true" />
+      <created>1744239500002</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1744239500002</updated>
+    </task>
+    <task id="LOCAL-00006" summary="aggiunte icone">
+      <option name="closed" value="true" />
+      <created>1744239518555</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1744239518555</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -186,6 +200,8 @@
     <MESSAGE value="create prime relazioni e interazioni con file e cartelle" />
     <MESSAGE value="salvataggio modifiche nota" />
     <MESSAGE value="modifica db" />
-    <option name="LAST_COMMIT_MESSAGE" value="modifica db" />
+    <MESSAGE value="agganciate ultime api" />
+    <MESSAGE value="aggiunte icone" />
+    <option name="LAST_COMMIT_MESSAGE" value="aggiunte icone" />
   </component>
 </project>

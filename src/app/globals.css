@@ -3,6 +3,7 @@
 :root {
   --background: #1c1c1c;
   --primary: #008080;
+  --primary-darker: #016464;
   --secondary: #ff7f50;
   --accent: #40e0d0;
   --text: #eeeeee;
@@ -13,6 +14,7 @@
   :root {
     --background: #ffffff;
     --primary: #008080;
+    --primary-darker: #016464;
     --secondary: #ff7f50;
     --accent: #40e0d0;
     --text: #333333;
@@ -23,6 +25,7 @@
 @theme base {
   --color-background: var(--background);
   --color-primary: var(--primary);
+  --color-primary-darker: var(--primary-darker);
   --color-secondary: var(--secondary);
   --color-accent: var(--accent);
   --color-text: var(--text);
@@ -38,7 +41,7 @@ body {
 }
 
 main {
-  @apply flex justify-center items-center h-screen p-4;
+  @apply flex justify-center items-center h-[100dvh] w-full;
 }
 
 .shape {
