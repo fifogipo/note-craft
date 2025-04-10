@@ -1,7 +1,8 @@
-import { FC, useState, useEffect } from "react";
+import { FC, useEffect, useState } from "react";
 import { signOut } from "next-auth/react";
 import { Session } from "next-auth";
 import { Folder } from "@prisma/client";
+import Image from "next/image";
 
 type TSidebarProps = {
   session: Session;
@@ -61,7 +62,7 @@ const Sidebar: FC<TSidebarProps> = ({
           className="flex gap-2 items-center h-full cursor-pointer"
         >
           <span className="border border-white flex items-center justify-center rounded-full w-[18px] h-[18px]">
-            <img
+            <Image
               src="/plus.svg"
               alt="add icon"
               height={8}
@@ -90,7 +91,7 @@ const Sidebar: FC<TSidebarProps> = ({
                     onClick={() => handleRenameConfirm(f.id)}
                     className="cursor-pointer p-[0.4rem] rounded transition-colors duration-300 ease-in-out hover:bg-secondary"
                   >
-                    <img
+                    <Image
                       src="/check.svg"
                       alt="save icon"
                       width={12}
@@ -101,7 +102,7 @@ const Sidebar: FC<TSidebarProps> = ({
                     onClick={handleRenameCancel}
                     className="cursor-pointer p-[0.4rem] rounded transition-colors duration-300 ease-in-out hover:bg-secondary"
                   >
-                    <img
+                    <Image
                       src="/xmark.svg"
                       alt="undo icon"
                       width={12}
@@ -124,7 +125,7 @@ const Sidebar: FC<TSidebarProps> = ({
                       activeFolderId === f.id ? "bg-border-divider" : ""
                     }`}
                   >
-                    <img
+                    <Image
                       src={activeFolderId === f.id ? "/folder-open.svg" : "/folder-closed.svg"}
                       height={12}
                       width={12}
@@ -139,7 +140,7 @@ const Sidebar: FC<TSidebarProps> = ({
                     }}
                     className="cursor-pointer p-[0.4rem] rounded transition-colors duration-300 ease-in-out hover:bg-secondary"
                   >
-                    <img
+                    <Image
                       src="/pen.svg"
                       alt="modify icon"
                       width={12}
@@ -150,7 +151,7 @@ const Sidebar: FC<TSidebarProps> = ({
                     onClick={() => onDeleteFolder(f.id)}
                     className="cursor-pointer p-[0.4rem] rounded transition-colors duration-300 ease-in-out hover:bg-secondary"
                   >
-                    <img
+                    <Image
                       src="/trash.svg"
                       alt="delete icon"
                       width={12}
@@ -169,7 +170,7 @@ const Sidebar: FC<TSidebarProps> = ({
       </div>
       <div className="flex gap-4 justify-between items-center px-2 pb-2 border-r border-r-border-divider">
         <div className="flex gap-2 items-center">
-          <img
+          <Image
             className="rounded-full"
             src={session.user?.image || ""}
             alt="user image"
@@ -182,7 +183,7 @@ const Sidebar: FC<TSidebarProps> = ({
           className="w-fit cursor-pointer"
           onClick={() => signOut()}
         >
-          <img
+          <Image
             src="/right-from-bracket.svg"
             alt="log out"
             width={18}

@@ -1,6 +1,7 @@
 "use client";
 
 import { signIn } from "next-auth/react";
+import Image from "next/image";
 
 const SignIn = () => {
   return (
@@ -9,7 +10,7 @@ const SignIn = () => {
         <div className="shape-diff"></div>
         <div className="shape-diff-2"></div>
         <div className="shape-diff-3"></div>
-        <img
+        <Image
           src="/logo-big.svg"
           alt="logo node craft"
         />
@@ -18,7 +19,7 @@ const SignIn = () => {
           type="submit"
           className="flex items-center gap-2 rounded-lg cursor-pointer px-4 py-2 justify-center w-full text-[#333333] bg-white"
         >
-          <img
+          <Image
             loading="lazy"
             height="24"
             width="24"

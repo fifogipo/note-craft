@@ -1,4 +1,5 @@
-import { FC, useState, useEffect } from "react";
+import { FC, useEffect, useState } from "react";
+import Image from "next/image";
 
 type TFileListProps = {
   files: Note[];
@@ -31,7 +32,7 @@ const FileList: FC<TFileListProps> = ({ files, isMobile, changeFiles, onAddNote,
           className="flex gap-2 items-center h-full cursor-pointer"
         >
           <span className="border border-white flex items-center justify-center rounded-full w-[18px] h-[18px]">
-            <img
+            <Image
               src="/plus.svg"
               alt="add icon"
               height={8}
@@ -62,7 +63,7 @@ const FileList: FC<TFileListProps> = ({ files, isMobile, changeFiles, onAddNote,
                   activeFileId === f.id ? "bg-border-divider" : ""
                 }`}
               >
-                <img
+                <Image
                   src="/file.svg"
                   height={12}
                   width={12}
@@ -74,7 +75,7 @@ const FileList: FC<TFileListProps> = ({ files, isMobile, changeFiles, onAddNote,
                 onClick={() => onDeleteNote(f.id)}
                 className="cursor-pointer p-[0.4rem] rounded transition-colors duration-300 ease-in-out hover:bg-secondary"
               >
-                <img
+                <Image
                   src="/trash.svg"
                   alt="delete icon"
                   width={12}

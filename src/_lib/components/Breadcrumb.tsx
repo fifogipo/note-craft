@@ -1,4 +1,5 @@
 import { FC } from "react";
+import Image from "next/image";
 
 export type TBreadcrumbProps = {
   activeFolder: Folder | undefined;
@@ -22,7 +23,12 @@ export const Breadcrumb: FC<TBreadcrumbProps> = ({ activeFolder, activeNote, cur
         {((currentStep === 1 && activeFolder) || (activeNote && activeFolder)) && (
           <>
             <li className="h-[20px] flex items-center">
-              <img src="/chevron-right.svg" alt="arrow right icon" height={6} width={6}/>
+              <Image
+                src="/chevron-right.svg"
+                alt="arrow right icon"
+                height={6}
+                width={6}
+              />
             </li>
             <li>
               <button
@@ -37,7 +43,12 @@ export const Breadcrumb: FC<TBreadcrumbProps> = ({ activeFolder, activeNote, cur
         {currentStep === 2 && activeNote && (
           <>
             <li className="h-[20px] flex items-center">
-              <img src="/chevron-right.svg" alt="arrow right icon" height={6} width={6}/>
+              <Image
+                src="/chevron-right.svg"
+                alt="arrow right icon"
+                height={6}
+                width={6}
+              />
             </li>
             <li>
               <span>{activeNote.title}</span>
