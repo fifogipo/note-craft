@@ -4,10 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="106ba57b-d8cf-4075-8ef8-72acb0355fd9" name="Changes" comment="">
+    <list default="true" id="106ba57b-d8cf-4075-8ef8-72acb0355fd9" name="Changes" comment="fix build">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/next.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/next.config.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/_lib/components/SignIn.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/_lib/components/SignIn.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/_lib/hooks/useIsMobile.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/_lib/hooks/useIsMobile.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/api/auth/[...nextauth]/route.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/api/auth/[...nextauth]/route.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/layout.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/page.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,11 +69,11 @@
       <recent name="$PROJECT_DIR$/src/app/api/folders" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/public" />
       <recent name="$PROJECT_DIR$/src/_lib/components/signin" />
       <recent name="$PROJECT_DIR$/src/_lib/components/sidebar" />
       <recent name="$PROJECT_DIR$/src/app/api/notes/[id]" />
       <recent name="$PROJECT_DIR$/src/app/api/notes" />
-      <recent name="$PROJECT_DIR$/src/_lib/components/side-bar" />
     </key>
   </component>
   <component name="RunManager" selected="npm.dev">
@@ -143,7 +147,7 @@
       <workItem from="1744270903237" duration="3507000" />
       <workItem from="1744274652274" duration="1052000" />
       <workItem from="1744278810919" duration="1116000" />
-      <workItem from="1744280691009" duration="4593000" />
+      <workItem from="1744280691009" duration="11730000" />
     </task>
     <task id="LOCAL-00001" summary="init project and installed component">
       <option name="closed" value="true" />
@@ -225,7 +229,23 @@
       <option name="project" value="LOCAL" />
       <updated>1744284868392</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="fix img url">
+      <option name="closed" value="true" />
+      <created>1744285295275</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1744285295275</updated>
+    </task>
+    <task id="LOCAL-00012" summary="fix build">
+      <option name="closed" value="true" />
+      <created>1744289069878</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1744289069878</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -243,7 +263,9 @@
     <MESSAGE value="eliminati file superflui" />
     <MESSAGE value="modified version" />
     <MESSAGE value="fix img" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix img" />
+    <MESSAGE value="fix img url" />
+    <MESSAGE value="fix build" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix build" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>

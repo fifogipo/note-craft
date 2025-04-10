@@ -1,36 +1,96 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 📝 Note Craft
 
-## Getting Started
+Note Craft is a simple yet powerful note and folder management application built with **Next.js 15**, **React 19**, *
+*TailwindCSS**, and **Prisma**. The interface adapts perfectly to both mobile and desktop devices, offering a
+step-by-step navigation flow on mobile and a side-by-side view on desktop.
 
-First, run the development server:
+---
+
+## 🚀 Technologies
+
+- **Next.js 15** (App Router with Turbopack)
+- **React 19**
+- **TailwindCSS 4**
+- **NextAuth.js** for authentication
+- **Prisma ORM** for database interactions
+- **Rich Note Component** for the editor
+- **Lit + @lit-labs/react** for Web Components support
+
+---
+
+## 📦 Quick Setup
+
+Clone the repository and install dependencies:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone <repo-url>
+cd note-craft
+npm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 🔧 Configuration
 
-You can start editing the page by modifying `app/SignInComponent.tsx`. The page auto-updates as you edit the file.
+Create a `.env` file in the project root with the following environment variables (adjust as needed):
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```env
+DATABASE_URL="postgresql://user:password@localhost:5432/note-craft"
+NEXTAUTH_SECRET="your-super-secret"
+```
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## 🧪 Useful Commands
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+| Command              | Action                                             |
+|----------------------|----------------------------------------------------|
+| `npm run dev`        | Starts the project in development mode (Turbopack) |
+| `npm run build`      | Builds the project for production                  |
+| `npm start`          | Starts the Next.js server in production            |
+| `npm run lint`       | Runs code linting                                  |
+| `npm run generate`   | Regenerates Prisma client                          |
+| `npm run migrations` | Executes a Prisma migration (dev)                  |
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## 📁 Project Structure
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```
+note-craft/
+├─ app/
+│  └─ page.tsx        # The single app page (3-column layout)
+├─ _lib/components/        # Sidebar, FileList, RichNote, etc.
+├─ _lib/               # Shared functions, hooks, API utilities
+├─ prisma/            # Prisma schema and migrations
+├─ public/            # SVG icons, images, etc.
+├─ styles/            # Tailwind configuration and global styles
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+## 📱 Mobile Mode
+
+- **Step 1:** Select a folder (Sidebar)
+- **Step 2:** View the folder's notes (FileList)
+- **Step 3:** Edit a note (RichNote)
+
+Navigation is handled via a breadcrumb at the top, showing the active folder and note names.
+
+---
+
+## 🖥 Desktop Mode
+
+- **Side-by-side view:** Sidebar, Note List, and Note Editor are all visible simultaneously.
+- No routing is needed—everything is managed through internal state.
+
+---
+
+## 🔒 Authentication
+
+The app requires login via [NextAuth.js](https://next-auth.js.org/).  
+While multiple strategies (OAuth, Email, Credentials) can be supported, this demo uses basic authentication.
+
+---
+
+## 📝 License
+
+This project is licensed under the [MIT License](./LICENSE).
