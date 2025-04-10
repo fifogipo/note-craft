@@ -5,7 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="106ba57b-d8cf-4075-8ef8-72acb0355fd9" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/next.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/next.config.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/_lib/components/SignIn.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/_lib/components/SignIn.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,7 +72,7 @@
       <recent name="$PROJECT_DIR$/src/_lib/components/side-bar" />
     </key>
   </component>
-  <component name="RunManager" selected="npm.build">
+  <component name="RunManager" selected="npm.dev">
     <configuration name="build" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/package.json" />
       <command value="run" />
@@ -103,8 +105,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="npm.build" />
         <item itemvalue="npm.dev" />
+        <item itemvalue="npm.build" />
         <item itemvalue="npm.migrations" />
       </list>
     </recent_temporary>
@@ -141,7 +143,7 @@
       <workItem from="1744270903237" duration="3507000" />
       <workItem from="1744274652274" duration="1052000" />
       <workItem from="1744278810919" duration="1116000" />
-      <workItem from="1744280691009" duration="3593000" />
+      <workItem from="1744280691009" duration="4593000" />
     </task>
     <task id="LOCAL-00001" summary="init project and installed component">
       <option name="closed" value="true" />
@@ -207,7 +209,23 @@
       <option name="project" value="LOCAL" />
       <updated>1744284221207</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="modified version">
+      <option name="closed" value="true" />
+      <created>1744284309045</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1744284309045</updated>
+    </task>
+    <task id="LOCAL-00010" summary="fix img">
+      <option name="closed" value="true" />
+      <created>1744284868392</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1744284868392</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -223,7 +241,9 @@
     <MESSAGE value="aggiunte icone" />
     <MESSAGE value="terminato sviluppo poc" />
     <MESSAGE value="eliminati file superflui" />
-    <option name="LAST_COMMIT_MESSAGE" value="eliminati file superflui" />
+    <MESSAGE value="modified version" />
+    <MESSAGE value="fix img" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix img" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>

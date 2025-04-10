@@ -13,6 +13,8 @@ const SignIn = () => {
         <Image
           src="/logo-big.svg"
           alt="logo node craft"
+          width={150}
+          height={137}
         />
         <button
           onClick={() => signIn("google", { callbackUrl: "/" })}
@@ -21,8 +23,8 @@ const SignIn = () => {
         >
           <Image
             loading="lazy"
-            height="24"
-            width="24"
+            height={24}
+            width={24}
             id="provider-logo"
             src="https://authjs.dev/img/providers/google.svg"
             alt="logo google"
