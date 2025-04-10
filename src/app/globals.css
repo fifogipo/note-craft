@@ -86,5 +86,6 @@ main {
     inset: 0;
     background: url("../../public/logo-big.svg") no-repeat center;
     opacity: 0.2;
+    pointer-events: none;
   }
 }
