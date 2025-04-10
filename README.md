@@ -27,16 +27,6 @@ git clone <repo-url>
 cd note-craft
 npm install
 ```
-
-### 🔧 Configuration
-
-Create a `.env` file in the project root with the following environment variables (adjust as needed):
-
-```env
-DATABASE_URL="postgresql://user:password@localhost:5432/note-craft"
-NEXTAUTH_SECRET="your-super-secret"
-```
-
 ---
 
 ## 🧪 Useful Commands
